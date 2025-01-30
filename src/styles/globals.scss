@@ -2,6 +2,73 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --background: #f2f2f0;
+    --foreground: #202937;
+    --card: #ffffff;
+    --card-foreground: #202937;
+    --card-border: #e5e7eb;
+    --primary: #f5f5f7;
+    --primary-foreground: #202937;
+    --primary-hover: #e5e5e7;
+    --secondary: #fafafa;
+    --secondary-foreground: #202937;
+    --secondary-hover: #f5f5f5;
+    --secondary-border: #e5e7eb;
+    --secondary-border-hover: #d1d5db;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: #13151a;
+    --foreground: #e9eaeb;
+    --card: #1d1f27;
+    --card-foreground: #e9eaeb;
+    --card-border: #2f323d;
+    --primary: #262832;
+    --primary-foreground: #f9f9fb;
+    --primary-hover: #4a4e5d;
+    --secondary: #17181d;
+    --secondary-foreground: #f9f9fb;
+    --secondary-hover: #22242b;
+    --secondary-border: #262832;
+    --secondary-border-hover: #565b6c;
+  }
+
+  * {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply ds-template-bg-background ds-template-text-foreground ds-template-transition-colors ds-template-duration-300;
+  }
+
+  /* Force dark mode text colors */
+  .dark .ds-template-text-gray-400 {
+    color: rgb(156 163 175) !important;
+  }
+
+  .dark .ds-template-text-gray-600 {
+    color: rgb(156 163 175) !important;
+  }
+
+  /* Force dark mode background colors */
+  .dark\:bg-secondary:is(.dark *) {
+    background-color: var(--secondary);
+  }
+
+  /* Apply styles to the specific component */
+  .ds-template-bg-card.dark\:ds-template-bg-secondary.ds-template-border.ds-template-border-card-border.dark\:ds-template-border-secondary-border.ds-template-rounded-xl.ds-template-p-3.ds-template-shadow-\[0px_0px_16\.4px_0px_rgba\(0\,0\,0\,0\.02\)\] {
+    background-color: var(--card);
+  }
+
+  .dark
+    .ds-template-bg-card.dark\:ds-template-bg-secondary.ds-template-border.ds-template-border-card-border.dark\:ds-template-border-secondary-border.ds-template-rounded-xl.ds-template-p-3.ds-template-shadow-\[0px_0px_16\.4px_0px_rgba\(0\,0\,0\,0\.02\)\] {
+    background-color: var(--secondary);
+  }
+}
+
 @import url("./colors.css");
 @import url("./animation.css");
 
