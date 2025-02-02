@@ -11,6 +11,7 @@ export const FloatingNav = () => {
     { id: "work", label: "Work", icon: Briefcase },
   ];
 
+  // Filter sections for mobile view (excluding tools)
   const mobileSections = sections.filter((section) => section.id !== "tools");
 
   useEffect(() => {
@@ -29,6 +30,7 @@ export const FloatingNav = () => {
       });
 
       if (currentSection) {
+        // Map section IDs back to nav IDs
         const sectionToNavMapping = {
           hero: "hero",
           "featured-projects": "spotlight",
@@ -46,6 +48,7 @@ export const FloatingNav = () => {
   }, []);
 
   const scrollToSection = (id) => {
+    // Map the navigation IDs to their corresponding section IDs
     const sectionMapping = {
       hero: "hero",
       spotlight: "featured-projects",
@@ -53,6 +56,7 @@ export const FloatingNav = () => {
       work: "work-experience",
     };
 
+    // Use the mapped ID if it exists, otherwise use the original ID
     const targetId = sectionMapping[id] || id;
     const element = document.getElementById(targetId);
 
@@ -64,35 +68,35 @@ export const FloatingNav = () => {
   return (
     <>
       {/* Desktop Navigation */}
-      <nav className="ds-template-fixed ds-template-left-8 ds-template-top-1/2 ds-template--translate-y-1/2 ds-template-z-50 ds-template-hidden lg:ds-template-block">
-        <div className="ds-template-bg-card dark:ds-template-bg-secondary ds-template-border ds-template-border-card-border dark:ds-template-border-secondary-border ds-template-rounded-xl ds-template-p-3 ds-template-shadow-[0px_0px_16.4px_0px_rgba(0,0,0,0.02)]">
-          <div className="ds-template-flex ds-template-flex-col ds-template-gap-4">
+      <nav className="fixed left-8 top-1/2 -translate-y-1/2 z-50 hidden lg:block">
+        <div className="bg-card dark:bg-secondary border border-card-border dark:border-secondary-border rounded-xl p-3 shadow-[0px_0px_16.4px_0px_rgba(0,0,0,0.02)]">
+          <div className="flex flex-col gap-4">
             {sections.map(({ id, label, icon: Icon }) => (
               <button
                 key={id}
                 onClick={() => scrollToSection(id)}
-                className={`ds-template-group ds-template-flex ds-template-items-center ds-template-gap-4 ds-template-transition-all ${
+                className={`group flex items-center gap-4 transition-all ${
                   activeSection === id
-                    ? "ds-template-opacity-100"
-                    : "ds-template-opacity-50 hover:ds-template-opacity-100"
+                    ? "opacity-100"
+                    : "opacity-50 hover:opacity-100"
                 }`}
               >
                 <div
-                  className={`ds-template-flex ds-template-items-center ds-template-justify-center ds-template-w-10 ds-template-h-10 ds-template-rounded-full ds-template-transition-colors ${
+                  className={`flex items-center justify-center w-10 h-10 rounded-full transition-colors ${
                     activeSection === id
-                      ? "ds-template-bg-foreground dark:ds-template-bg-[#4a4e5d]"
-                      : "ds-template-bg-primary dark:ds-template-bg-[#262832] hover:ds-template-bg-primary-hover dark:hover:ds-template-bg-[#4a4e5d]"
+                      ? "bg-foreground dark:bg-[#2A2D37]"
+                      : "bg-[#e5e5e7] dark:bg-secondary-hover hover:bg-primary-hover dark:hover:bg-primary-hover"
                   }`}
                 >
                   <Icon
-                    className={`ds-template-w-5 ds-template-h-5 ${
+                    className={`w-5 h-5 ${
                       activeSection === id
-                        ? "ds-template-text-background dark:ds-template-text-white"
-                        : "ds-template-text-foreground dark:ds-template-text-gray-400"
+                        ? "text-background dark:text-white"
+                        : "text-foreground dark:text-foreground-dark"
                     }`}
                   />
                 </div>
-                <span className="ds-template-text-sm ds-template-opacity-0 group-hover:ds-template-opacity-100 ds-template-transition-opacity ds-template-absolute ds-template-left-full ds-template-pl-4 ds-template-whitespace-nowrap dark:ds-template-text-gray-300">
+                <span className="text-sm opacity-0 group-hover:opacity-100 transition-opacity absolute left-full pl-4 whitespace-nowrap">
                   {label}
                 </span>
               </button>
@@ -102,31 +106,31 @@ export const FloatingNav = () => {
       </nav>
 
       {/* Mobile and Tablet Navigation */}
-      <nav className="ds-template-fixed ds-template-bottom-8 ds-template-left-1/2 ds-template--translate-x-1/2 ds-template-z-50 lg:ds-template-hidden">
-        <div className="ds-template-bg-card dark:ds-template-bg-secondary ds-template-border ds-template-border-card-border dark:ds-template-border-secondary-border ds-template-rounded-xl ds-template-p-3 ds-template-shadow-[0px_0px_16.4px_0px_rgba(0,0,0,0.02)]">
-          <div className="ds-template-flex ds-template-items-center ds-template-gap-4">
+      <nav className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 lg:hidden">
+        <div className="bg-card dark:bg-secondary border border-card-border dark:border-secondary-border rounded-xl p-3 shadow-[0px_0px_16.4px_0px_rgba(0,0,0,0.02)]">
+          <div className="flex items-center gap-4">
             {mobileSections.map(({ id, icon: Icon }) => (
               <button
                 key={id}
                 onClick={() => scrollToSection(id)}
-                className={`ds-template-group ds-template-flex ds-template-flex-col ds-template-items-center ds-template-transition-all ${
+                className={`group flex flex-col items-center transition-all ${
                   activeSection === id
-                    ? "ds-template-opacity-100"
-                    : "ds-template-opacity-50 hover:ds-template-opacity-100"
+                    ? "opacity-100"
+                    : "opacity-50 hover:opacity-100"
                 }`}
               >
                 <div
-                  className={`ds-template-flex ds-template-items-center ds-template-justify-center ds-template-w-10 ds-template-h-10 ds-template-rounded-full ds-template-transition-colors ${
+                  className={`flex items-center justify-center w-10 h-10 rounded-full transition-colors ${
                     activeSection === id
-                      ? "ds-template-bg-foreground dark:ds-template-bg-[#4a4e5d]"
-                      : "ds-template-bg-primary dark:ds-template-bg-[#262832] hover:ds-template-bg-primary-hover dark:hover:ds-template-bg-[#4a4e5d]"
+                      ? "bg-foreground dark:bg-[#2A2D37]"
+                      : "bg-[#e5e5e7] dark:bg-secondary-hover hover:bg-primary-hover dark:hover:bg-primary-hover"
                   }`}
                 >
                   <Icon
-                    className={`ds-template-w-5 ds-template-h-5 ${
+                    className={`w-5 h-5 ${
                       activeSection === id
-                        ? "ds-template-text-background dark:ds-template-text-white"
-                        : "ds-template-text-foreground dark:ds-template-text-gray-400"
+                        ? "text-background dark:text-white"
+                        : "text-foreground dark:text-foreground-dark"
                     }`}
                   />
                 </div>

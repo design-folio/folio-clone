@@ -6,15 +6,15 @@ const Slider = React.forwardRef(({ className, ...props }, ref) => (
   <SliderPrimitive.Root
     ref={ref}
     className={cn(
-      "ds-template-relative ds-template-flex ds-template-w-full ds-template-touch-none ds-template-select-none ds-template-items-center",
+      "relative flex w-full touch-none select-none items-center",
       className
     )}
     {...props}
   >
-    <SliderPrimitive.Track className="ds-template-relative ds-template-h-2 ds-template-w-full ds-template-grow ds-template-overflow-hidden ds-template-rounded-full ds-template-bg-secondary">
-      <SliderPrimitive.Range className="ds-template-absolute ds-template-h-full ds-template-bg-primary" />
+    <SliderPrimitive.Track className="relative h-2 w-full grow overflow-hidden rounded-full bg-secondary">
+      <SliderPrimitive.Range className="absolute h-full bg-primary" />
     </SliderPrimitive.Track>
-    <SliderPrimitive.Thumb className="ds-template-block ds-template-h-5 ds-template-w-5 ds-template-rounded-full ds-template-border-2 ds-template-border-primary ds-template-bg-background ds-template-ring-offset-background ds-template-transition-colors ds-template-focus-visible:outline-none ds-template-focus-visible:ring-2 ds-template-focus-visible:ring-ring ds-template-focus-visible:ring-offset-2 ds-template-disabled:pointer-events-none ds-template-disabled:opacity-50" />
+    <SliderPrimitive.Thumb className="block h-5 w-5 rounded-full border-2 border-primary bg-background ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50" />
   </SliderPrimitive.Root>
 ));
 Slider.displayName = SliderPrimitive.Root.displayName;

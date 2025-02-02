@@ -7,17 +7,13 @@ const ScrollArea = function ScrollArea({ className, children, ...props }) {
     ScrollAreaPrimitive.Root,
     {
       ref: ref,
-      className: cn(
-        "ds-template-relative ds-template-overflow-hidden",
-        className
-      ),
+      className: cn("relative overflow-hidden", className),
       ...props,
     },
     /*#__PURE__*/ React.createElement(
       ScrollAreaPrimitive.Viewport,
       {
-        className:
-          "ds-template-h-full ds-template-w-full ds-template-rounded-[inherit]",
+        className: "h-full w-full rounded-[inherit]",
       },
       children
     ),
@@ -39,18 +35,17 @@ const ScrollBar = function ScrollBar({
       ref: ref,
       orientation: orientation,
       className: cn(
-        "ds-template-flex ds-template-touch-none ds-template-select-none ds-template-transition-colors",
+        "flex touch-none select-none transition-colors",
         orientation === "vertical" &&
-          "ds-template-h-full ds-template-w-2.5 ds-template-border-l ds-template-border-l-transparent ds-template-p-[1px]",
+          "h-full w-2.5 border-l border-l-transparent p-[1px]",
         orientation === "horizontal" &&
-          "ds-template-h-2.5 ds-template-flex-col ds-template-border-t ds-template-border-t-transparent ds-template-p-[1px]",
+          "h-2.5 flex-col border-t border-t-transparent p-[1px]",
         className
       ),
       ...props,
     },
     /*#__PURE__*/ React.createElement(ScrollAreaPrimitive.ScrollAreaThumb, {
-      className:
-        "ds-template-relative ds-template-flex-1 ds-template-rounded-full ds-template-bg-border",
+      className: "relative flex-1 rounded-full bg-border",
     })
   );
 };

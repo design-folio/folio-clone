@@ -11,10 +11,10 @@ const InputOTP = forwardRef(function InputOTP(
     <OTPInput
       ref={ref}
       containerClassName={cn(
-        "ds-template-flex ds-template-items-center ds-template-gap-2 has-[:disabled]:ds-template-opacity-50",
+        "flex items-center gap-2 has-[:disabled]:opacity-50",
         containerClassName
       )}
-      className={cn("disabled:ds-template-cursor-not-allowed", className)}
+      className={cn("disabled:cursor-not-allowed", className)}
       {...props}
     />
   );
@@ -26,11 +26,7 @@ const InputOTPGroup = forwardRef(function InputOTPGroup(
   ref
 ) {
   return (
-    <div
-      ref={ref}
-      className={cn("ds-template-flex ds-template-items-center", className)}
-      {...props}
-    />
+    <div ref={ref} className={cn("flex items-center", className)} {...props} />
   );
 });
 InputOTPGroup.displayName = "InputOTPGroup";
@@ -46,17 +42,16 @@ const InputOTPSlot = forwardRef(function InputOTPSlot(
     <div
       ref={ref}
       className={cn(
-        "ds-template-relative ds-template-flex ds-template-h-10 ds-template-w-10 ds-template-items-center ds-template-justify-center ds-template-border-y ds-template-border-r ds-template-border-input ds-template-text-sm ds-template-transition-all first:ds-template-rounded-l-md first:ds-template-border-l last:ds-template-rounded-r-md",
-        isActive &&
-          "ds-template-z-10 ds-template-ring-2 ds-template-ring-ring ds-template-ring-offset-background",
+        "relative flex h-10 w-10 items-center justify-center border-y border-r border-input text-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md",
+        isActive && "z-10 ring-2 ring-ring ring-offset-background",
         className
       )}
       {...props}
     >
       {char}
       {hasFakeCaret && (
-        <div className="ds-template-pointer-events-none ds-template-absolute ds-template-inset-0 ds-template-flex ds-template-items-center ds-template-justify-center">
-          <div className="ds-template-h-4 ds-template-w-px ds-template-animate-caret-blink ds-template-bg-foreground ds-template-duration-1000" />
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+          <div className="h-4 w-px animate-caret-blink bg-foreground duration-1000" />
         </div>
       )}
     </div>

@@ -114,7 +114,7 @@ const Carousel = React.forwardRef(function Carousel(
       <div
         ref={ref}
         onKeyDownCapture={handleKeyDown}
-        className={cn("ds-template-relative", className)}
+        className={cn("relative", className)}
         role="region"
         aria-roledescription="carousel"
         {...props}
@@ -133,14 +133,12 @@ const CarouselContent = React.forwardRef(function CarouselContent(
   const { carouselRef, orientation } = useCarousel();
 
   return (
-    <div ref={carouselRef} className="ds-template-overflow-hidden">
+    <div ref={carouselRef} className="overflow-hidden">
       <div
         ref={ref}
         className={cn(
-          "ds-template-flex",
-          orientation === "horizontal"
-            ? "ds-template--ml-4"
-            : "ds-template--mt-4 ds-template-flex-col",
+          "flex",
+          orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
           className
         )}
         {...props}
@@ -162,8 +160,8 @@ const CarouselItem = React.forwardRef(function CarouselItem(
       role="group"
       aria-roledescription="slide"
       className={cn(
-        "ds-template-min-w-0 ds-template-shrink-0 ds-template-grow-0 ds-template-basis-full",
-        orientation === "horizontal" ? "ds-template-pl-4" : "ds-template-pt-4",
+        "min-w-0 shrink-0 grow-0 basis-full",
+        orientation === "horizontal" ? "pl-4" : "pt-4",
         className
       )}
       {...props}
@@ -184,18 +182,18 @@ const CarouselPrevious = React.forwardRef(function CarouselPrevious(
       variant={variant}
       size={size}
       className={cn(
-        "ds-template-absolute ds-template-h-8 ds-template-w-8 ds-template-rounded-full",
+        "absolute h-8 w-8 rounded-full",
         orientation === "horizontal"
-          ? "ds-template--left-12 ds-template-top-1/2 ds-template--translate-y-1/2"
-          : "ds-template--top-12 ds-template-left-1/2 ds-template--translate-x-1/2 ds-template-rotate-90",
+          ? "-left-12 top-1/2 -translate-y-1/2"
+          : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
         className
       )}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
       {...props}
     >
-      <ArrowLeft className="ds-template-h-4 ds-template-w-4" />
-      <span className="ds-template-sr-only">Previous slide</span>
+      <ArrowLeft className="h-4 w-4" />
+      <span className="sr-only">Previous slide</span>
     </Button>
   );
 });
@@ -213,18 +211,18 @@ const CarouselNext = React.forwardRef(function CarouselNext(
       variant={variant}
       size={size}
       className={cn(
-        "ds-template-absolute ds-template-h-8 ds-template-w-8 ds-template-rounded-full",
+        "absolute h-8 w-8 rounded-full",
         orientation === "horizontal"
-          ? "ds-template--right-12 ds-template-top-1/2 ds-template--translate-y-1/2"
-          : "ds-template--bottom-12 ds-template-left-1/2 ds-template--translate-x-1/2 ds-template-rotate-90",
+          ? "-right-12 top-1/2 -translate-y-1/2"
+          : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
         className
       )}
       disabled={!canScrollNext}
       onClick={scrollNext}
       {...props}
     >
-      <ArrowRight className="ds-template-h-4 ds-template-w-4" />
-      <span className="ds-template-sr-only">Next slide</span>
+      <ArrowRight className="h-4 w-4" />
+      <span className="sr-only">Next slide</span>
     </Button>
   );
 });

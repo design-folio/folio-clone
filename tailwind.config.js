@@ -6,7 +6,6 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  prefix: "ds-template-",
   theme: {
     container: {
       center: true,

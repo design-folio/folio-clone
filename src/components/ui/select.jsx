@@ -19,7 +19,7 @@ const SelectTrigger = function SelectTrigger({
     {
       ref: ref,
       className: cn(
-        "ds-template-flex ds-template-h-10 ds-template-w-full ds-template-items-center ds-template-justify-between ds-template-rounded-md ds-template-border ds-template-border-input ds-template-bg-background ds-template-px-3 ds-template-py-2 ds-template-text-sm ds-template-ring-offset-background ds-template-placeholder:text-muted-foreground ds-template-focus:outline-none ds-template-focus:ring-2 ds-template-focus:ring-ring ds-template-focus:ring-offset-2 ds-template-disabled:cursor-not-allowed ds-template-disabled:opacity-50 [&>span]:ds-template-line-clamp-1",
+        "flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
         className
       ),
       ...props,
@@ -31,7 +31,7 @@ const SelectTrigger = function SelectTrigger({
         asChild: true,
       },
       /*#__PURE__*/ React.createElement(ChevronDown, {
-        className: "ds-template-h-4 ds-template-w-4 ds-template-opacity-50",
+        className: "h-4 w-4 opacity-50",
       })
     )
   );
@@ -48,13 +48,13 @@ const SelectScrollUpButton = function SelectScrollUpButton({
     {
       ref: ref,
       className: cn(
-        "ds-template-flex ds-template-cursor-default ds-template-items-center ds-template-justify-center ds-template-py-1",
+        "flex cursor-default items-center justify-center py-1",
         className
       ),
       ...props,
     },
     /*#__PURE__*/ React.createElement(ChevronUp, {
-      className: "ds-template-h-4 ds-template-w-4",
+      className: "h-4 w-4",
     })
   );
 };
@@ -70,13 +70,13 @@ const SelectScrollDownButton = function SelectScrollDownButton({
     {
       ref: ref,
       className: cn(
-        "ds-template-flex ds-template-cursor-default ds-template-items-center ds-template-justify-center ds-template-py-1",
+        "flex cursor-default items-center justify-center py-1",
         className
       ),
       ...props,
     },
     /*#__PURE__*/ React.createElement(ChevronDown, {
-      className: "ds-template-h-4 ds-template-w-4",
+      className: "h-4 w-4",
     })
   );
 };
@@ -98,9 +98,9 @@ const SelectContent = function SelectContent({
       {
         ref: ref,
         className: cn(
-          "ds-template-relative ds-template-z-50 ds-template-max-h-96 ds-template-min-w-[8rem] ds-template-overflow-hidden ds-template-rounded-md ds-template-border ds-template-bg-popover ds-template-text-popover-foreground ds-template-shadow-md data-[state=open]:ds-template-animate-in data-[state=closed]:ds-template-animate-out data-[state=closed]:ds-template-fade-out-0 data-[state=open]:ds-template-fade-in-0 data-[state=closed]:ds-template-zoom-out-95 data-[state=open]:ds-template-zoom-in-95 data-[side=bottom]:ds-template-slide-in-from-top-2 data-[side=left]:ds-template-slide-in-from-right-2 data-[side=right]:ds-template-slide-in-from-left-2 data-[side=top]:ds-template-slide-in-from-bottom-2",
+          "relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
           position === "popper" &&
-            "data-[side=bottom]:ds-template-translate-y-1 data-[side=left]:ds-template--translate-x-1 data-[side=right]:ds-template-translate-x-1 data-[side=top]:ds-template--translate-y-1",
+            "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
           className
         ),
         position: position,
@@ -111,9 +111,9 @@ const SelectContent = function SelectContent({
         SelectPrimitive.Viewport,
         {
           className: cn(
-            "ds-template-p-1",
+            "p-1",
             position === "popper" &&
-              "ds-template-h-[var(--radix-select-trigger-height)] ds-template-w-full ds-template-min-w-[var(--radix-select-trigger-width)]"
+              "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]"
           ),
         },
         children
@@ -128,10 +128,7 @@ SelectContent.displayName = SelectPrimitive.Content.displayName;
 const SelectLabel = function SelectLabel({ className, ...props }) {
   return /*#__PURE__*/ React.createElement(SelectPrimitive.Label, {
     ref: ref,
-    className: cn(
-      "ds-template-py-1.5 ds-template-pl-8 ds-template-pr-2 ds-template-text-sm ds-template-font-semibold",
-      className
-    ),
+    className: cn("py-1.5 pl-8 pr-2 text-sm font-semibold", className),
     ...props,
   });
 };
@@ -144,7 +141,7 @@ const SelectItem = function SelectItem({ className, children, ...props }) {
     {
       ref: ref,
       className: cn(
-        "ds-template-relative ds-template-flex ds-template-w-full ds-template-cursor-default ds-template-select-none ds-template-items-center ds-template-rounded-sm ds-template-py-1.5 ds-template-pl-8 ds-template-pr-2 ds-template-text-sm ds-template-outline-none ds-template-focus:bg-accent ds-template-focus:text-accent-foreground data-[disabled]:ds-template-pointer-events-none data-[disabled]:ds-template-opacity-50",
+        "relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
         className
       ),
       ...props,
@@ -153,13 +150,13 @@ const SelectItem = function SelectItem({ className, children, ...props }) {
       "span",
       {
         className:
-          "ds-template-absolute ds-template-left-2 ds-template-flex ds-template-h-3.5 ds-template-w-3.5 ds-template-items-center ds-template-justify-center",
+          "absolute left-2 flex h-3.5 w-3.5 items-center justify-center",
       },
       /*#__PURE__*/ React.createElement(
         SelectPrimitive.ItemIndicator,
         null,
         /*#__PURE__*/ React.createElement(Check, {
-          className: "ds-template-h-4 ds-template-w-4",
+          className: "h-4 w-4",
         })
       )
     ),
@@ -172,10 +169,7 @@ SelectItem.displayName = SelectPrimitive.Item.displayName;
 const SelectSeparator = function SelectSeparator({ className, ...props }) {
   return /*#__PURE__*/ React.createElement(SelectPrimitive.Separator, {
     ref: ref,
-    className: cn(
-      "ds-template--mx-1 ds-template-my-1 ds-template-h-px ds-template-bg-muted",
-      className
-    ),
+    className: cn("-mx-1 my-1 h-px bg-muted", className),
     ...props,
   });
 };

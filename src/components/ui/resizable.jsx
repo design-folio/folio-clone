@@ -8,7 +8,7 @@ const ResizablePanelGroup = function ResizablePanelGroup({
 }) {
   return /*#__PURE__*/ React.createElement(ResizablePrimitive.PanelGroup, {
     className: cn(
-      "ds-template-flex ds-template-h-full ds-template-w-full data-[panel-group-direction=vertical]:ds-template-flex-col",
+      "flex h-full w-full data-[panel-group-direction=vertical]:flex-col",
       className
     ),
     ...props,
@@ -26,7 +26,7 @@ const ResizableHandle = function ResizableHandle({
     ResizablePrimitive.PanelResizeHandle,
     {
       className: cn(
-        "ds-template-relative ds-template-flex ds-template-w-px ds-template-items-center ds-template-justify-center ds-template-bg-border after:ds-template-absolute after:ds-template-inset-y-0 after:ds-template-left-1/2 after:ds-template-w-1 after:ds-template--translate-x-1/2 ds-template-focus-visible:ds-template-outline-none ds-template-focus-visible:ds-template-ring-1 ds-template-focus-visible:ds-template-ring-ring ds-template-focus-visible:ds-template-ring-offset-1 data-[panel-group-direction=vertical]:ds-template-h-px data-[panel-group-direction=vertical]:ds-template-w-full data-[panel-group-direction=vertical]:after:ds-template-left-0 data-[panel-group-direction=vertical]:after:ds-template-h-1 data-[panel-group-direction=vertical]:after:ds-template-w-full data-[panel-group-direction=vertical]:after:ds-template--translate-y-1/2 data-[panel-group-direction=vertical]:after:ds-template-translate-x-0 [&[data-panel-group-direction=vertical]>div]:ds-template-rotate-90",
+        "relative flex w-px items-center justify-center bg-border after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-1 data-[panel-group-direction=vertical]:h-px data-[panel-group-direction=vertical]:w-full data-[panel-group-direction=vertical]:after:left-0 data-[panel-group-direction=vertical]:after:h-1 data-[panel-group-direction=vertical]:after:w-full data-[panel-group-direction=vertical]:after:-translate-y-1/2 data-[panel-group-direction=vertical]:after:translate-x-0 [&[data-panel-group-direction=vertical]>div]:rotate-90",
         className
       ),
       ...props,
@@ -36,10 +36,10 @@ const ResizableHandle = function ResizableHandle({
         "div",
         {
           className:
-            "ds-template-z-10 ds-template-flex ds-template-h-4 ds-template-w-3 ds-template-items-center ds-template-justify-center ds-template-rounded-sm ds-template-border ds-template-bg-border",
+            "z-10 flex h-4 w-3 items-center justify-center rounded-sm border bg-border",
         },
         /*#__PURE__*/ React.createElement(GripVertical, {
-          className: "ds-template-h-2.5 ds-template-w-2.5",
+          className: "h-2.5 w-2.5",
         })
       )
   );

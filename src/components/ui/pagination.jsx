@@ -8,10 +8,7 @@ const Pagination = ({ className, ...props }) => (
   <nav
     role="navigation"
     aria-label="pagination"
-    className={cn(
-      "ds-template-mx-auto ds-template-flex ds-template-w-full ds-template-justify-center",
-      className
-    )}
+    className={cn("mx-auto flex w-full justify-center", className)}
     {...props}
   />
 );
@@ -24,10 +21,7 @@ const PaginationContent = React.forwardRef(function PaginationContent(
   return (
     <ul
       ref={ref}
-      className={cn(
-        "ds-template-flex ds-template-flex-row ds-template-items-center ds-template-gap-1",
-        className
-      )}
+      className={cn("flex flex-row items-center gap-1", className)}
       {...props}
     />
   );
@@ -61,10 +55,10 @@ const PaginationPrevious = ({ className, ...props }) => (
   <PaginationLink
     aria-label="Go to previous page"
     size="default"
-    className={cn("ds-template-gap-1 ds-template-pl-2.5", className)}
+    className={cn("gap-1 pl-2.5", className)}
     {...props}
   >
-    <ChevronLeft className="ds-template-h-4 ds-template-w-4" />
+    <ChevronLeft className="h-4 w-4" />
     <span>Previous</span>
   </PaginationLink>
 );
@@ -74,11 +68,11 @@ const PaginationNext = ({ className, ...props }) => (
   <PaginationLink
     aria-label="Go to next page"
     size="default"
-    className={cn("ds-template-gap-1 ds-template-pr-2.5", className)}
+    className={cn("gap-1 pr-2.5", className)}
     {...props}
   >
     <span>Next</span>
-    <ChevronRight className="ds-template-h-4 ds-template-w-4" />
+    <ChevronRight className="h-4 w-4" />
   </PaginationLink>
 );
 PaginationNext.displayName = "PaginationNext";
@@ -86,13 +80,10 @@ PaginationNext.displayName = "PaginationNext";
 const PaginationEllipsis = ({ className, ...props }) => (
   <span
     aria-hidden
-    className={cn(
-      "ds-template-flex ds-template-h-9 ds-template-w-9 ds-template-items-center ds-template-justify-center",
-      className
-    )}
+    className={cn("flex h-9 w-9 items-center justify-center", className)}
     {...props}
   >
-    <MoreHorizontal className="ds-template-h-4 ds-template-w-4" />
+    <MoreHorizontal className="h-4 w-4" />
     <span className="sr-only">More pages</span>
   </span>
 );

@@ -4,7 +4,7 @@ import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const labelVariants = cva(
-  "ds-template-text-sm ds-template-font-medium ds-template-leading-none peer-disabled:ds-template-cursor-not-allowed peer-disabled:ds-template-opacity-70"
+  "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
 );
 
 const Label = forwardRef(function Label({ className, ...props }, ref) {

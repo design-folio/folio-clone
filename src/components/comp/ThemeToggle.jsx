@@ -1,63 +1,68 @@
-import React, { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
 
-const ThemeToggle = () => {
+export const ThemeToggle = () => {
   // Get initial theme from localStorage or system preference
   const getInitialTheme = () => {
     const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
+    if (savedTheme === "light" || savedTheme === "dark") {
       return savedTheme;
     }
     // Check system preference
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    if (
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+    ) {
       return "dark";
     }
     return "light";
   };
 
-  const [theme, setTheme] = useState(() => getInitialTheme());
-
-  // Update theme class in DOM and localStorage
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", theme === "dark");
-    localStorage.setItem("theme", theme);
-  }, [theme]);
+  const [theme, setTheme] = useState(() => {
+    // Run this synchronously during component initialization
+    const initialTheme = getInitialTheme();
+    // Apply theme immediately
+    document.documentElement.classList.toggle("dark", initialTheme === "dark");
+    return initialTheme;
+  });
 
   // Listen for system theme changes
   useEffect(() => {
+    const mediaQuery =
+      window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
     const handleChange = (e) => {
       const newTheme = e.matches ? "dark" : "light";
       setTheme(newTheme);
+      localStorage.setItem("theme", newTheme);
+      document.documentElement.classList.toggle("dark", newTheme === "dark");
     };
 
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    mediaQuery.addEventListener("change", handleChange);
-
-    return () => {
-      mediaQuery.removeEventListener("change", handleChange);
-    };
+    if (mediaQuery) {
+      mediaQuery.addEventListener("change", handleChange);
+      return () => mediaQuery.removeEventListener("change", handleChange);
+    }
   }, []);
 
   const toggleTheme = () => {
     const newTheme = theme === "dark" ? "light" : "dark";
     setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+    document.documentElement.classList.toggle("dark", newTheme === "dark");
   };
 
   return (
     <Button
       variant="outline"
       size="icon"
-      className="ds-template-w-8 ds-template-h-8"
+      className="w-8 h-8"
       onClick={toggleTheme}
     >
       {theme === "dark" ? (
-        <Sun className="ds-template-h-4 ds-template-w-4" />
+        <Sun className="h-4 w-4" />
       ) : (
-        <Moon className="ds-template-h-4 ds-template-w-4" />
+        <Moon className="h-4 w-4" />
       )}
     </Button>
   );
 };
-
-export default ThemeToggle;

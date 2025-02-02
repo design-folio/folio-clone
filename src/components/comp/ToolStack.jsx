@@ -1,25 +1,15 @@
 import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { Github, Figma, Laptop, Globe, FileCode, Pencil } from "lucide-react";
+import { useEffect, useState, useRef } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
-export const ToolStack = () => {
+export const ToolStack = ({ userDetails }) => {
   const isMobile = useIsMobile();
-
-  const tools = [
-    { name: "Github", icon: Github, link: "#" },
-    { name: "Figma", icon: Figma, link: "#" },
-    { name: "Mockup", icon: Laptop, link: "#" },
-    { name: "Arc Browser", icon: Globe, link: "#" },
-    { name: "Code Editor", icon: FileCode, link: "#" },
-    { name: "Design", icon: Pencil, link: "#" },
-  ];
+  const { tools } = userDetails || {};
 
   // Duplicate tools multiple times for smoother infinite scroll
   const scrollTools = [...tools, ...tools, ...tools];
 
-  const container = {
+  const containerVariants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -31,7 +21,7 @@ export const ToolStack = () => {
     },
   };
 
-  const item = {
+  const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     show: {
       opacity: 1,
@@ -55,59 +45,71 @@ export const ToolStack = () => {
     },
   };
 
+  // Custom IntersectionObserver for Next.js Page Router
+  const [inView, setInView] = useState(false);
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setInView(entry.isIntersecting);
+      },
+      { threshold: 0.5 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, []);
 
   return (
-    <section className="ds-template-py-16 ds-template-overflow-hidden">
-      <h2 className="ds-template-text-2xl ds-template-font-bold ds-template-mb-8 ds-template-text-center">
-        Tool Stack
-      </h2>
+    <section className="py-16 overflow-hidden">
+      <h2 className="text-2xl font-bold mb-8 text-center">Tool Stack</h2>
       {isMobile ? (
-        <div className="ds-template-relative ds-template-w-full">
-          <motion.div
-            className="ds-template-flex ds-template-gap-4 ds-template-px-4"
-            animate={scrollAnimation}
-          >
-            {scrollTools.map((Tool, index) => (
-              <a
+        <div className="relative w-full">
+          <motion.div className="flex gap-4 px-4" animate={scrollAnimation}>
+            {scrollTools.map((tool, index) => (
+              <div
                 key={index}
-                href={Tool.link}
-                className="ds-template-flex ds-template-flex-col ds-template-items-center ds-template-gap-2 ds-template-min-w-[100px]"
+                className="flex flex-col items-center gap-2 min-w-[100px]"
               >
-                <div className="ds-template-bg-card ds-template-p-4 ds-template-rounded-2xl ds-template-flex ds-template-items-center ds-template-justify-center ds-template-transition-colors hover:ds-template-bg-card/80">
-                  <Tool.icon className="ds-template-size-8" />
+                <div className="bg-card p-4 rounded-2xl flex items-center justify-center transition-colors hover:bg-card/80">
+                  <img src={tool.image} className="w-8" />
                 </div>
-                <span className="ds-template-text-sm ds-template-whitespace-nowrap">
-                  {Tool.name}
-                </span>
-              </a>
+                <span className="text-sm whitespace-nowrap">{tool.name}</span>
+              </div>
             ))}
           </motion.div>
         </div>
       ) : (
         <motion.div
           ref={ref}
-          variants={container}
+          variants={containerVariants}
           initial="hidden"
-          animate={isInView ? "show" : "hidden"}
-          className="ds-template-flex ds-template-justify-center ds-template-gap-4"
+          animate={inView ? "show" : "hidden"} // Uses IntersectionObserver-based inView state
+          className="flex justify-center gap-4"
         >
-          {tools.map((Tool, index) => (
-            <motion.a
+          {tools.map((tool, index) => (
+            <motion.div
               key={index}
-              href={Tool.link}
-              variants={item}
+              variants={itemVariants}
               whileHover={{ scale: 1.2, y: -8 }}
-              className="ds-template-relative ds-template-group"
+              className="relative group"
             >
-              <div className="ds-template-bg-card ds-template-p-4 ds-template-rounded-2xl ds-template-flex ds-template-items-center ds-template-justify-center ds-template-transition-colors hover:ds-template-bg-card/80">
-                <Tool.icon className="ds-template-size-8" />
+              <div className="bg-card p-4 rounded-2xl flex items-center justify-center transition-colors hover:bg-card/80">
+                {/* <Tool.icon className="size-8" /> */}
+                <img src={tool.image} className="w-8" />
               </div>
-              <div className="ds-template-absolute ds-template--bottom-6 ds-template-left-1/2 ds-template--translate-x-1/2 ds-template-opacity-0 group-hover:ds-template-opacity-100 ds-template-transition-opacity ds-template-text-sm ds-template-whitespace-nowrap">
-                {Tool.name}
+              <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-sm whitespace-nowrap">
+                {tool.label}
               </div>
-            </motion.a>
+            </motion.div>
           ))}
         </motion.div>
       )}

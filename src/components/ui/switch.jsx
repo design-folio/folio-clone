@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 const Switch = React.forwardRef(({ className, ...props }, ref) => (
   <SwitchPrimitives.Root
     className={cn(
-      "ds-template-peer ds-template-inline-flex ds-template-h-6 ds-template-w-11 ds-template-shrink-0 ds-template-cursor-pointer ds-template-items-center ds-template-rounded-full ds-template-border-2 ds-template-border-transparent ds-template-transition-colors ds-template-focus-visible:ds-template-outline-none ds-template-focus-visible:ds-template-ring-2 ds-template-focus-visible:ds-template-ring-ring ds-template-focus-visible:ds-template-ring-offset-2 ds-template-focus-visible:ds-template-ring-offset-background ds-template-disabled:ds-template-cursor-not-allowed ds-template-disabled:ds-template-opacity-50 data-[state=checked]:ds-template-bg-primary data-[state=unchecked]:ds-template-bg-input",
+      "peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input",
       className
     )}
     {...props}
@@ -13,7 +13,7 @@ const Switch = React.forwardRef(({ className, ...props }, ref) => (
   >
     <SwitchPrimitives.Thumb
       className={cn(
-        "ds-template-pointer-events-none ds-template-block ds-template-h-5 ds-template-w-5 ds-template-rounded-full ds-template-bg-background ds-template-shadow-lg ds-template-ring-0 ds-template-transition-transform data-[state=checked]:ds-template-translate-x-5 data-[state=unchecked]:ds-template-translate-x-0"
+        "pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
       )}
     />
   </SwitchPrimitives.Root>

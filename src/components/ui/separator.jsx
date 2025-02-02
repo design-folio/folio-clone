@@ -13,10 +13,8 @@ const Separator = function Separator({
     decorative: decorative,
     orientation: orientation,
     className: cn(
-      "ds-template-shrink-0 ds-template-bg-border",
-      orientation === "horizontal"
-        ? "ds-template-h-[1px] ds-template-w-full"
-        : "ds-template-h-full ds-template-w-[1px]",
+      "shrink-0 bg-border",
+      orientation === "horizontal" ? "h-[1px] w-full" : "h-full w-[1px]",
       className
     ),
     ...props,

@@ -1,27 +1,13 @@
-import React, { useRef, useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useInView } from "framer-motion";
+import { useRouter } from "next/router";
 
-const WorkShowcase = () => {
-  const projects = [
-    {
-      title: "MyCaptain Course Platform",
-      description:
-        "Designed and developed the course overview page with interactive calendar, project submission, and progress tracking features",
-      image: "/lovable-uploads/583822bc-e5e5-4852-ac18-b8b612b58f88.png",
-      link: "#",
-    },
-    {
-      title: "MyCaptain Profile Builder",
-      description:
-        "Built a responsive profile creation flow with multi-step form validation and real-time preview",
-      image: "/lovable-uploads/a74665b6-a9d5-449a-8d53-68ecf5d99e46.png",
-      link: "#",
-    },
-  ];
+export const WorkShowcase = ({ userDetails }) => {
+  const { projects } = userDetails || {};
+  const router = useRouter();
 
-  const container = {
+  const containerVariants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -33,7 +19,7 @@ const WorkShowcase = () => {
     },
   };
 
-  const item = {
+  const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     show: {
       opacity: 1,
@@ -45,32 +31,54 @@ const WorkShowcase = () => {
     },
   };
 
+  // Custom IntersectionObserver for Next.js Page Router
+  const [inView, setInView] = useState(false);
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setInView(entry.isIntersecting);
+      }
+      // { threshold: 0.5 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, []);
+
+  const handleNavigation = (id) => {
+    router.push(`/project/${id}`);
+  };
+
+  // Image Component with Loading State
   const ImageWithPreload = ({ src, alt }) => {
     const [isLoaded, setIsLoaded] = useState(false);
 
     return (
-      <div className="ds-template-relative ds-template-w-full ds-template-h-full">
-        <AnimatePresence>
-          {!isLoaded && (
-            <motion.div
-              key="loading"
-              initial={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.4 }}
-              className="ds-template-absolute ds-template-inset-0 ds-template-bg-secondary/50"
-            />
-          )}
-        </AnimatePresence>
+      <div className="relative w-full h-full">
+        {!isLoaded && (
+          <motion.div
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="absolute inset-0 bg-secondary/50"
+          />
+        )}
         <motion.img
           initial={{ opacity: 0 }}
           animate={{ opacity: isLoaded ? 1 : 0 }}
           transition={{ duration: 0.4 }}
           src={src}
           alt={alt}
-          className="ds-template-w-full ds-template-h-full ds-template-object-cover ds-template-object-center group-hover:ds-template-scale-105 ds-template-transition-transform ds-template-duration-300"
+          className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
           loading="eager"
           decoding="async"
           onLoad={() => setIsLoaded(true)}
@@ -79,7 +87,8 @@ const WorkShowcase = () => {
     );
   };
 
-  const ProjectCard = ({ project, index }) => {
+  // Project Card Component
+  const ProjectCard = ({ project }) => {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const cardRef = useRef(null);
 
@@ -94,52 +103,53 @@ const WorkShowcase = () => {
 
     return (
       <motion.div
-        variants={item}
+        variants={itemVariants}
         ref={cardRef}
         onMouseMove={handleMouseMove}
-        className="ds-template-group ds-template-rounded-3xl ds-template-bg-card ds-template-overflow-hidden ds-template-relative ds-template-shadow-[0px_0px_16.4px_0px_rgba(0,0,0,0.02)]"
+        onClick={() => handleNavigation(project?._id)}
+        className="group rounded-3xl bg-card overflow-hidden relative shadow-lg"
       >
+        {/* Hover effect */}
         <div
-          className="ds-template-pointer-events-none ds-template-absolute ds-template--inset-px ds-template-opacity-0 group-hover:ds-template-opacity-100 ds-template-transition-opacity ds-template-duration-300"
+          className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           style={{
             background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,.1), transparent 40%)`,
           }}
         />
-        <div className="ds-template-aspect-[4/3] ds-template-overflow-hidden ds-template-bg-secondary/50 ds-template-relative">
-          <ImageWithPreload src={project.image} alt={project.title} />
+        {/* Project Image */}
+        <div className="aspect-[4/3] overflow-hidden bg-secondary/50 relative">
+          <ImageWithPreload src={project?.thumbnail?.url} alt={project.title} />
+          {/* Project Link */}
           <a
             href={project.link}
-            className="ds-template-absolute ds-template-top-6 ds-template-right-6 ds-template-size-14 ds-template-rounded-full ds-template-bg-tertiary ds-template-flex ds-template-items-center ds-template-justify-center ds-template-opacity-0 ds-template-scale-75 group-hover:ds-template-opacity-100 group-hover:ds-template-scale-100 ds-template-transition-all ds-template-duration-300 hover:ds-template-bg-tertiary-hover"
+            className="absolute top-6 right-6 size-14 rounded-full bg-tertiary flex items-center justify-center opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 hover:bg-tertiary-hover"
           >
-            <ArrowUpRight className="ds-template-size-6 ds-template-text-white" />
+            <ArrowUpRight className="size-6 text-white" />
           </a>
         </div>
-        <div className="ds-template-p-8 ds-template-pb-10">
-          <h3 className="ds-template-text-2xl ds-template-font-semibold ds-template-mb-3 ds-template-leading-tight">
+        {/* Project Info */}
+        <div className="p-8 pb-10">
+          <h3 className="text-2xl font-semibold mb-3 leading-tight">
             {project.title}
           </h3>
-          <p className="ds-template-text-gray-400 ds-template-line-clamp-2">
-            {project.description}
-          </p>
+          <p className="text-gray-400 line-clamp-2">{project.description}</p>
         </div>
       </motion.div>
     );
   };
 
   return (
-    <section className="ds-template-pt-0 ds-template-pb-16">
-      <h2 className="ds-template-text-2xl ds-template-font-bold ds-template-mb-8">
-        Featured Projects
-      </h2>
+    <section className="pt-0 pb-16">
+      <h2 className="text-2xl font-bold mb-8">Featured Projects</h2>
       <motion.div
         ref={ref}
-        variants={container}
+        variants={containerVariants}
         initial="hidden"
-        animate={isInView ? "show" : "hidden"}
-        className="ds-template-grid ds-template-grid-cols-1 md:ds-template-grid-cols-2 ds-template-gap-6"
+        animate={inView ? "show" : "hidden"}
+        className="grid grid-cols-1 md:grid-cols-2 gap-6"
       >
         {projects.map((project, index) => (
-          <ProjectCard key={index} project={project} index={index} />
+          <ProjectCard key={index} project={project} />
         ))}
       </motion.div>
     </section>

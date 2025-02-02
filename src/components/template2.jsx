@@ -52,7 +52,7 @@ export default function Template2({ userDetails, preview = false }) {
       setActiveStep((prev) => prev + 1); // update step when no projects exist
     } else if (activeStep === 7 && projects && projects.length === 0) {
       setActiveStep((prev) => prev + 1); // update step when no projects exist
-    } else if (activeStep === 8 && reviews && reviews.length === 0) {
+    } else if (activeStep === 8 && reviews && reviews?.length === 0) {
       setActiveStep((prev) => prev + 1); // update step when no reviews exist
     } else if (activeStep === 9 && experiences && experiences.length === 0) {
       setActiveStep((prev) => prev + 1); // update step when no experiences exist
@@ -206,7 +206,7 @@ export default function Template2({ userDetails, preview = false }) {
           </>
         )}
 
-        {activeStep >= 8 && reviews && reviews.length > 0 && (
+        {activeStep >= 8 && reviews && reviews?.length > 0 && (
           <>
             <Chat direction="left">
               I’ve always gotten great feedback from my clients & colleagues.

@@ -31,7 +31,7 @@ const ChartContainer = React.forwardRef(function ChartContainer(
         data-chart={chartId}
         ref={ref}
         className={cn(
-          "ds-template-flex ds-template-aspect-video ds-template-justify-center ds-template-text-xs [&_.recharts-cartesian-axis-tick_text]:ds-template-fill-muted-foreground [&_.recharts-cartesian-grid_line[stroke='#ccc']]:ds-template-stroke-border/50 [&_.recharts-curve.recharts-tooltip-cursor]:ds-template-stroke-border [&_.recharts-dot[stroke='#fff']]:ds-template-stroke-transparent [&_.recharts-layer]:ds-template-outline-none [&_.recharts-polar-grid_[stroke='#ccc']]:ds-template-stroke-border [&_.recharts-radial-bar-background-sector]:ds-template-fill-muted [&_.recharts-rectangle.recharts-tooltip-cursor]:ds-template-fill-muted [&_.recharts-reference-line_[stroke='#ccc']]:ds-template-stroke-border [&_.recharts-sector[stroke='#fff']]:ds-template-stroke-transparent [&_.recharts-sector]:ds-template-outline-none [&_.recharts-surface]:ds-template-outline-none",
+          "flex aspect-video justify-center text-xs [&_.recharts-cartesian-axis-tick_text]:fill-muted-foreground [&_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-border/50 [&_.recharts-curve.recharts-tooltip-cursor]:stroke-border [&_.recharts-dot[stroke='#fff']]:stroke-transparent [&_.recharts-layer]:outline-none [&_.recharts-polar-grid_[stroke='#ccc']]:stroke-border [&_.recharts-radial-bar-background-sector]:fill-muted [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted [&_.recharts-reference-line_[stroke='#ccc']]:stroke-border [&_.recharts-sector[stroke='#fff']]:stroke-transparent [&_.recharts-sector]:outline-none [&_.recharts-surface]:outline-none",
           className
         )}
         {...props}
@@ -116,7 +116,7 @@ const ChartTooltipContent = React.forwardRef(function ChartTooltipContent(
 
     if (labelFormatter) {
       return (
-        <div className={cn("ds-template-font-medium", labelClassName)}>
+        <div className={cn("font-medium", labelClassName)}>
           {labelFormatter(value, payload)}
         </div>
       );
@@ -126,11 +126,7 @@ const ChartTooltipContent = React.forwardRef(function ChartTooltipContent(
       return null;
     }
 
-    return (
-      <div className={cn("ds-template-font-medium", labelClassName)}>
-        {value}
-      </div>
-    );
+    return <div className={cn("font-medium", labelClassName)}>{value}</div>;
   }, [
     label,
     labelFormatter,
@@ -151,12 +147,12 @@ const ChartTooltipContent = React.forwardRef(function ChartTooltipContent(
     <div
       ref={ref}
       className={cn(
-        "ds-template-grid ds-template-min-w-[8rem] ds-template-items-start ds-template-gap-1.5 ds-template-rounded-lg ds-template-border ds-template-border-border/50 ds-template-bg-background ds-template-px-2.5 ds-template-py-1.5 ds-template-text-xs ds-template-shadow-xl",
+        "grid min-w-[8rem] items-start gap-1.5 rounded-lg border border-border/50 bg-background px-2.5 py-1.5 text-xs shadow-xl",
         className
       )}
     >
       {!nestLabel ? tooltipLabel : null}
-      <div className="ds-template-grid ds-template-gap-1.5">
+      <div className="grid gap-1.5">
         {payload.map((item, index) => {
           const key = `${nameKey || item.name || item.dataKey || "value"}`;
           const itemConfig = getPayloadConfigFromPayload(config, item, key);
@@ -166,8 +162,8 @@ const ChartTooltipContent = React.forwardRef(function ChartTooltipContent(
             <div
               key={item.dataKey}
               className={cn(
-                "ds-template-flex ds-template-w-full ds-template-flex-wrap ds-template-items-stretch ds-template-gap-2 [&>svg]:ds-template-h-2.5 [&>svg]:ds-template-w-2.5 [&>svg]:ds-template-text-muted-foreground",
-                indicator === "dot" && "ds-template-items-center"
+                "flex w-full flex-wrap items-stretch gap-2 [&>svg]:h-2.5 [&>svg]:w-2.5 [&>svg]:text-muted-foreground",
+                indicator === "dot" && "items-center"
               )}
             >
               {formatter && item?.value !== undefined && item.name ? (
@@ -180,15 +176,13 @@ const ChartTooltipContent = React.forwardRef(function ChartTooltipContent(
                     !hideIndicator && (
                       <div
                         className={cn(
-                          "ds-template-shrink-0 ds-template-rounded-[2px] ds-template-border-[--color-border] ds-template-bg-[--color-bg]",
+                          "shrink-0 rounded-[2px] border-[--color-border] bg-[--color-bg]",
                           {
-                            "ds-template-h-2.5 ds-template-w-2.5":
-                              indicator === "dot",
-                            "ds-template-w-1": indicator === "line",
-                            "ds-template-w-0 ds-template-border-[1.5px] ds-template-border-dashed ds-template-bg-transparent":
+                            "h-2.5 w-2.5": indicator === "dot",
+                            "w-1": indicator === "line",
+                            "w-0 border-[1.5px] border-dashed bg-transparent":
                               indicator === "dashed",
-                            "ds-template-my-0.5":
-                              nestLabel && indicator === "dashed",
+                            "my-0.5": nestLabel && indicator === "dashed",
                           }
                         )}
                         style={{
@@ -200,20 +194,18 @@ const ChartTooltipContent = React.forwardRef(function ChartTooltipContent(
                   )}
                   <div
                     className={cn(
-                      "ds-template-flex ds-template-flex-1 ds-template-justify-between ds-template-leading-none",
-                      nestLabel
-                        ? "ds-template-items-end"
-                        : "ds-template-items-center"
+                      "flex flex-1 justify-between leading-none",
+                      nestLabel ? "items-end" : "items-center"
                     )}
                   >
-                    <div className="ds-template-grid ds-template-gap-1.5">
+                    <div className="grid gap-1.5">
                       {nestLabel ? tooltipLabel : null}
-                      <span className="ds-template-text-muted-foreground">
+                      <span className="text-muted-foreground">
                         {itemConfig?.label || item.name}
                       </span>
                     </div>
                     {item.value && (
-                      <span className="ds-template-font-mono ds-template-font-medium ds-template-tabular-nums ds-template-text-foreground">
+                      <span className="font-mono font-medium tabular-nums text-foreground">
                         {item.value.toLocaleString()}
                       </span>
                     )}
@@ -245,8 +237,8 @@ const ChartLegendContent = React.forwardRef(function ChartLegendContent(
     <div
       ref={ref}
       className={cn(
-        "ds-template-flex ds-template-items-center ds-template-justify-center ds-template-gap-4",
-        verticalAlign === "top" ? "ds-template-pb-3" : "ds-template-pt-3",
+        "flex items-center justify-center gap-4",
+        verticalAlign === "top" ? "pb-3" : "pt-3",
         className
       )}
     >
@@ -258,14 +250,14 @@ const ChartLegendContent = React.forwardRef(function ChartLegendContent(
           <div
             key={item.value}
             className={cn(
-              "ds-template-flex ds-template-items-center ds-template-gap-1.5 [&>svg]:ds-template-h-3 [&>svg]:ds-template-w-3 [&>svg]:ds-template-text-muted-foreground"
+              "flex items-center gap-1.5 [&>svg]:h-3 [&>svg]:w-3 [&>svg]:text-muted-foreground"
             )}
           >
             {itemConfig?.icon && !hideIcon ? (
               <itemConfig.icon />
             ) : (
               <div
-                className="ds-template-h-2 ds-template-w-2 ds-template-shrink-0 ds-template-rounded-[2px]"
+                className="h-2 w-2 shrink-0 rounded-[2px]"
                 style={{
                   backgroundColor: item.color,
                 }}

@@ -20,7 +20,7 @@
     --radius: 0.5rem;
   }
 
-  .dark {
+  [data-theme="dark"] {
     --background: #13151a;
     --foreground: #e9eaeb;
     --card: #1d1f27;
@@ -41,31 +41,7 @@
   }
 
   body {
-    @apply ds-template-bg-background ds-template-text-foreground ds-template-transition-colors ds-template-duration-300;
-  }
-
-  /* Force dark mode text colors */
-  .dark .ds-template-text-gray-400 {
-    color: rgb(156 163 175) !important;
-  }
-
-  .dark .ds-template-text-gray-600 {
-    color: rgb(156 163 175) !important;
-  }
-
-  /* Force dark mode background colors */
-  .dark\:bg-secondary:is(.dark *) {
-    background-color: var(--secondary);
-  }
-
-  /* Apply styles to the specific component */
-  .ds-template-bg-card.dark\:ds-template-bg-secondary.ds-template-border.ds-template-border-card-border.dark\:ds-template-border-secondary-border.ds-template-rounded-xl.ds-template-p-3.ds-template-shadow-\[0px_0px_16\.4px_0px_rgba\(0\,0\,0\,0\.02\)\] {
-    background-color: var(--card);
-  }
-
-  .dark
-    .ds-template-bg-card.dark\:ds-template-bg-secondary.ds-template-border.ds-template-border-card-border.dark\:ds-template-border-secondary-border.ds-template-rounded-xl.ds-template-p-3.ds-template-shadow-\[0px_0px_16\.4px_0px_rgba\(0\,0\,0\,0\.02\)\] {
-    background-color: var(--secondary);
+    @apply bg-background text-foreground transition-colors duration-300;
   }
 }
 

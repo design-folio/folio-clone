@@ -4,13 +4,13 @@ import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const alertVariants = cva(
-  "ds-template-relative ds-template-w-full ds-template-rounded-lg ds-template-border ds-template-p-4 [&>svg~*]:ds-template-pl-7 [&>svg+div]:ds-template-translate-y-[-3px] [&>svg]:ds-template-absolute [&>svg]:ds-template-left-4 [&>svg]:ds-template-top-4 [&>svg]:ds-template-text-foreground",
+  "relative w-full rounded-lg border p-4 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground",
   {
     variants: {
       variant: {
-        default: "ds-template-bg-background ds-template-text-foreground",
+        default: "bg-background text-foreground",
         destructive:
-          "ds-template-border-destructive/50 ds-template-text-destructive dark:ds-template-border-destructive [&>svg]:ds-template-text-destructive",
+          "border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive",
       },
     },
     defaultVariants: {
@@ -32,10 +32,7 @@ Alert.displayName = "Alert";
 const AlertTitle = React.forwardRef(({ className, ...props }, ref) => (
   <h5
     ref={ref}
-    className={cn(
-      "ds-template-mb-1 ds-template-font-medium ds-template-leading-none ds-template-tracking-tight",
-      className
-    )}
+    className={cn("mb-1 font-medium leading-none tracking-tight", className)}
     {...props}
   />
 ));
@@ -44,10 +41,7 @@ AlertTitle.displayName = "AlertTitle";
 const AlertDescription = React.forwardRef(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn(
-      "ds-template-text-sm [&_p]:ds-template-leading-relaxed",
-      className
-    )}
+    className={cn("text-sm [&_p]:leading-relaxed", className)}
     {...props}
   />
 ));

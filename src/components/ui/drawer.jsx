@@ -20,10 +20,7 @@ const DrawerClose = DrawerPrimitive.Close;
 const DrawerOverlay = React.forwardRef(({ className, ...props }, ref) => (
   <DrawerPrimitive.Overlay
     ref={ref}
-    className={cn(
-      "ds-template-fixed ds-template-inset-0 ds-template-z-50 ds-template-bg-black/80",
-      className
-    )}
+    className={cn("fixed inset-0 z-50 bg-black/80", className)}
     {...props}
   />
 ));
@@ -36,12 +33,12 @@ const DrawerContent = React.forwardRef(
       <DrawerPrimitive.Content
         ref={ref}
         className={cn(
-          "ds-template-fixed ds-template-inset-x-0 ds-template-bottom-0 ds-template-z-50 ds-template-mt-24 ds-template-flex ds-template-h-auto ds-template-flex-col ds-template-rounded-t-[10px] ds-template-border ds-template-bg-background",
+          "fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border bg-background",
           className
         )}
         {...props}
       >
-        <div className="ds-template-mx-auto ds-template-mt-4 ds-template-h-2 ds-template-w-[100px] ds-template-rounded-full ds-template-bg-muted" />
+        <div className="mx-auto mt-4 h-2 w-[100px] rounded-full bg-muted" />
         {children}
       </DrawerPrimitive.Content>
     </DrawerPortal>
@@ -51,10 +48,7 @@ DrawerContent.displayName = "DrawerContent";
 
 const DrawerHeader = ({ className, ...props }) => (
   <div
-    className={cn(
-      "ds-template-grid ds-template-gap-1.5 ds-template-p-4 ds-template-text-center sm:ds-template-text-left",
-      className
-    )}
+    className={cn("grid gap-1.5 p-4 text-center sm:text-left", className)}
     {...props}
   />
 );
@@ -62,10 +56,7 @@ DrawerHeader.displayName = "DrawerHeader";
 
 const DrawerFooter = ({ className, ...props }) => (
   <div
-    className={cn(
-      "ds-template-mt-auto ds-template-flex ds-template-flex-col ds-template-gap-2 ds-template-p-4",
-      className
-    )}
+    className={cn("mt-auto flex flex-col gap-2 p-4", className)}
     {...props}
   />
 );
@@ -75,7 +66,7 @@ const DrawerTitle = React.forwardRef(({ className, ...props }, ref) => (
   <DrawerPrimitive.Title
     ref={ref}
     className={cn(
-      "ds-template-text-lg ds-template-font-semibold ds-template-leading-none ds-template-tracking-tight",
+      "text-lg font-semibold leading-none tracking-tight",
       className
     )}
     {...props}
@@ -86,10 +77,7 @@ DrawerTitle.displayName = DrawerPrimitive.Title.displayName;
 const DrawerDescription = React.forwardRef(({ className, ...props }, ref) => (
   <DrawerPrimitive.Description
     ref={ref}
-    className={cn(
-      "ds-template-text-sm ds-template-text-muted-foreground",
-      className
-    )}
+    className={cn("text-sm text-muted-foreground", className)}
     {...props}
   />
 ));

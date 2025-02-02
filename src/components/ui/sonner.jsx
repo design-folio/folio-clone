@@ -7,16 +7,16 @@ const Toaster = ({ ...props }) => {
   return (
     <Sonner
       theme={theme}
-      className="ds-template-toaster ds-template-group"
+      className="toaster group"
       toastOptions={{
         classNames: {
           toast:
-            "ds-template-group ds-template-toast ds-template-group-[.toaster]:bg-background ds-template-group-[.toaster]:text-foreground ds-template-group-[.toaster]:border-border ds-template-group-[.toaster]:shadow-lg",
-          description: "ds-template-group-[.toast]:text-muted-foreground",
+            "group toast group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-border group-[.toaster]:shadow-lg",
+          description: "group-[.toast]:text-muted-foreground",
           actionButton:
-            "ds-template-group-[.toast]:bg-primary ds-template-group-[.toast]:text-primary-foreground",
+            "group-[.toast]:bg-primary group-[.toast]:text-primary-foreground",
           cancelButton:
-            "ds-template-group-[.toast]:bg-muted ds-template-group-[.toast]:text-muted-foreground",
+            "group-[.toast]:bg-muted group-[.toast]:text-muted-foreground",
         },
       }}
       {...props}

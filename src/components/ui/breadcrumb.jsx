@@ -12,7 +12,7 @@ const BreadcrumbList = React.forwardRef(({ className, ...props }, ref) => (
   <ol
     ref={ref}
     className={cn(
-      "ds-template-flex ds-template-flex-wrap ds-template-items-center ds-template-gap-1.5 ds-template-break-words ds-template-text-sm ds-template-text-muted-foreground sm:ds-template-gap-2.5",
+      "flex flex-wrap items-center gap-1.5 break-words text-sm text-muted-foreground sm:gap-2.5",
       className
     )}
     {...props}
@@ -23,10 +23,7 @@ BreadcrumbList.displayName = "BreadcrumbList";
 const BreadcrumbItem = React.forwardRef(({ className, ...props }, ref) => (
   <li
     ref={ref}
-    className={cn(
-      "ds-template-inline-flex ds-template-items-center ds-template-gap-1.5",
-      className
-    )}
+    className={cn("inline-flex items-center gap-1.5", className)}
     {...props}
   />
 ));
@@ -38,10 +35,7 @@ const BreadcrumbLink = React.forwardRef(
     return (
       <Comp
         ref={ref}
-        className={cn(
-          "ds-template-transition-colors hover:ds-template-text-foreground",
-          className
-        )}
+        className={cn("transition-colors hover:text-foreground", className)}
         {...props}
       />
     );
@@ -55,10 +49,7 @@ const BreadcrumbPage = React.forwardRef(({ className, ...props }, ref) => (
     role="link"
     aria-disabled="true"
     aria-current="page"
-    className={cn(
-      "ds-template-font-normal ds-template-text-foreground",
-      className
-    )}
+    className={cn("font-normal text-foreground", className)}
     {...props}
   />
 ));
@@ -68,7 +59,7 @@ const BreadcrumbSeparator = ({ children, className, ...props }) => (
   <li
     role="presentation"
     aria-hidden="true"
-    className={cn("[&>svg]:ds-template-size-3.5", className)}
+    className={cn("[&>svg]:size-3.5", className)}
     {...props}
   >
     {children ?? <ChevronRight />}
@@ -80,14 +71,11 @@ const BreadcrumbEllipsis = ({ className, ...props }) => (
   <span
     role="presentation"
     aria-hidden="true"
-    className={cn(
-      "ds-template-flex ds-template-h-9 ds-template-w-9 ds-template-items-center ds-template-justify-center",
-      className
-    )}
+    className={cn("flex h-9 w-9 items-center justify-center", className)}
     {...props}
   >
-    <MoreHorizontal className="ds-template-h-4 ds-template-w-4" />
-    <span className="ds-template-sr-only">More</span>
+    <MoreHorizontal className="h-4 w-4" />
+    <span className="sr-only">More</span>
   </span>
 );
 BreadcrumbEllipsis.displayName = "BreadcrumbElipssis";
